@@ -1,0 +1,93 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>reveal.js</title>
+
+    <link rel="stylesheet" href="dist/reset.css">
+    <link rel="stylesheet" href="dist/reveal.css">
+    <link rel="stylesheet" href="dist/theme/black.css">
+
+    <!-- Theme used for syntax highlighted code -->
+    <link rel="stylesheet" href="plugin/highlight/monokai.css">
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section><h1 style="text-transform:none">RabbitMQ</h1>
+          <p>is the most widely deployed message broker.</p>
+        </section>
+        <section>
+          <h2>Exchange types</h2>
+          <ul>
+            <li>Direct Exchange & Default Exchange</li>
+            <li>Topic Exchange</li>
+            <li>Fanout Exchange</li>
+            <li>Headers Exchange</li>
+          </ul>
+          <aside class="notes">
+            <ul>
+              <li>
+             Direct exchanges are often used to distribute tasks between multiple workers (instances of the same application) in a round robin manner. When doing so, it is important to understand that, in AMQP 0-9-1, messages are load balanced between consumers and not between queues.
+              </li>
+              <li>
+                Fanout exchange examples
+                <ul>
+                  <li>Massively multi-player online (MMO) games can use it for leaderboard updates or other global events</li>
+                  <li>Sport news sites can use fanout exchanges for distributing score updates to mobile clients in near real-time</li>
+                  <li>Distributed systems can broadcast various state and configuration updates</li>
+                </ul>
+              </li>
+              <li>
+                Topic exchange examples
+                <ul>
+                  <li>Distributing data relevant to specific geographic location, for example, points of sale</li>
+                  <li>Background task processing done by multiple workers, each capable of handling specific set of tasks</li>
+                  <li>Stocks price updates (and updates on other kinds of financial data)</li>
+                  <li>News updates that involve categorization or tagging (for example, only for a particular sport or team)</li>
+                  <li>Orchestration of services of different kinds in the cloud</li>
+                  <li>Distributed architecture/OS-specific software builds or packaging where each builder can handle only one architecture or OS</li>
+                </ul>
+              </li>
+            </ul>
+          </aside>
+        </section>
+        <section>
+          <img src="/assets/direct-exchange.png" style="background-color: white;height:500px;width:auto">
+        </section>
+        <section>
+          <img src="/assets/topic-exchange.png" style="background-color: white;height:500px;width:auto">
+        </section>
+        <section>
+          <img src="/assets/fanout-exchange.png" style="background-color: white;height:500px;width:auto">
+        </section>
+        <section>
+          <img src="/assets/header-exchange.png" style="background-color: white;height:500px;width:auto">
+        </section>
+        <section>
+          <h2 style="text-transform:none">Comparison to Apache Kafka</h2>
+        </section>
+      </div>
+    </div>
+
+    <script src="dist/reveal.js"></script>
+    <script src="plugin/notes/notes.js"></script>
+    <script src="plugin/markdown/markdown.js"></script>
+    <script src="plugin/highlight/highlight.js"></script>
+    <script>
+      // More info about initialization & config:
+      // - https://revealjs.com/initialization/
+      // - https://revealjs.com/config/
+      Reveal.initialize({
+        hash: true,
+        width: '100%',
+        height: '100%',
+
+        // Learn about plugins: https://revealjs.com/plugins/
+        plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+      });
+    </script>
+  </body>
+</html>
